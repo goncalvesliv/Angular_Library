@@ -1,1 +1,52 @@
-<p>home works!</p>
+<div class="container mt-5">
+    <div class="text-start mb-4 d-flex flex-row align-items-center justify-content-between">
+        <div class="text-container d-flex flex-column me-3">
+            <h1 class="mt-3">Bem-vindo ao Sistema de Livros</h1>
+            <p class="lead">Aqui você pode cadastrar, pesquisar e gerenciar seus livros de maneira simples e eficiente.</p>
+        </div>
+        <img src="imgBook.png" alt="Logo ou Título" class="img-home">
+    </div>
+    <button class="btn btn-success w-100" [routerLink]="['/cadastro']" routerLinkActive="router-link-active" >Cadastrar novo Livro</button>
+    <div>
+        <label class="form-label">Pesquisar:</label>
+        <input class="form-control" type="text" placeholder="Qual o Livro que deseja buscar" (input)="search($event)"/>
+    </div>
+
+    <table class="table table-hover table-bordered table-striped mt-5">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Ano</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @if(book.length > 0){
+                @for (book of book; track $index) {
+
+                    <tr>
+                        <td>{{ book.id.slice(-4) }}</td>
+                        <td>{{book.title}}</td>
+                        <td>{{book.author}}</td>
+                        <td>{{book.year}}</td>
+                        <td>{{book.available == true ?"Disponível":"Indisponível"}}</td>
+                        <td>
+                            <button class="btn btn-primary mx-2" [routerLink]="['/editar', book.id]">Editar</button>
+                            <button class="btn btn-info mx-2" [routerLink]="['/detalhes', book.id]">Detalhes</button>
+                            <button class="btn btn-danger mx-2" (click)="deletar(book.id)">Excluir</button>
+                        </td>
+                    </tr>
+                }
+            }@else {
+                <tr class="text-center">
+                    <td colspan="7">Nenhum livro Cadastrado</td>
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+</div>
