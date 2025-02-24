@@ -23,7 +23,6 @@ export class HomeComponent implements OnInit {
     this.bookService.GetBooks().subscribe(response => {
       this.book = response.dados;
       this.booksGeral = response.dados;
-      console.log(response);
 
     })
 
@@ -40,7 +39,6 @@ export class HomeComponent implements OnInit {
 
   deletar(id:string){
     this.bookService.DeletarBook(id).subscribe(response => {
-      console.log(response);
       window.location.reload();
     })
   }
