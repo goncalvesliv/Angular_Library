@@ -1,5 +1,5 @@
 export interface BookListar{
-    id:string;
+    id?:number;
     title:string;
     author:string;
     year:number;
