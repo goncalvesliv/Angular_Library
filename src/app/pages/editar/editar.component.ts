@@ -23,7 +23,7 @@ constructor(private bookService: BookService, private router: Router, private ro
 
 ngOnInit(){
   console.log(1)
-   const id = String(this.route.snapshot.paramMap.get('id'))
+   const id = Number(this.route.snapshot.paramMap.get('id'))
 
    this.bookService.GetBookId(id).subscribe(response => {
     console.log(2)
@@ -32,26 +32,10 @@ ngOnInit(){
 }
 
 editBook(book: BookListar) {
-  const id = this.route.snapshot.paramMap.get('id'); // Obtém o ID da rota
-
-  if (!id) {
-    console.error("ID não encontrado na rota!");
-    return;
-  }
-
-  console.log("Enviando PUT para:", `${this.bookService.ApiUrl}/${id}`);
-  console.log("Dados enviados:", book);
-
-  this.bookService.UpdateBook(id, book).subscribe({
-    next: () => {
-      this.router.navigate(['/']);
-    },
-    error: (err) => {
-      console.error("Erro na requisição:", err);
-    }
-  });
+  this.bookService.UpdateBook(book).subscribe(response => {
+    this.router.navigate(['/']);
+  })
 }
-
 
 }
 

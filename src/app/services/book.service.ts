@@ -18,21 +18,22 @@ export class BookService{
     return this.http.get<Response<BookListar[]>>(this.ApiUrl)
   }
 
-  DeletarBook(id:string): Observable<Response<BookListar[]>>{
-    return this.http.delete<Response<BookListar[]>>(`${this.ApiUrl}/${id}`);
+  DeletarBook(id:number): Observable<Response<BookListar[]>>{
+    return this.http.delete<Response<BookListar[]>>(`${this.ApiUrl}?bookId=${id}`);
   }
 
   CreatBook(book: BookListar) : Observable<Response<BookListar[]>>{
     return this.http.post<Response<BookListar[]>>(this.ApiUrl,book)
   }
 
-  GetBookId(id:string) : Observable<Response<BookListar>>{
+  GetBookId(id:number) : Observable<Response<BookListar>>{
     return this.http.get<Response<BookListar>>(`${this.ApiUrl}/${id}`);
   }
 
-  UpdateBook(id: string, book: BookListar): Observable<Response<BookListar>> {
-    return this.http.put<Response<BookListar>>(`${this.ApiUrl}/${id}`, book);
-  }
+  UpdateBook(book: BookListar): Observable<Response<BookListar>> {
+    return this.http.put<Response<BookListar>>(`${this.ApiUrl}/${book.id}`, book);
+}
+
   
 }
  

@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  deletar(id:string){
+  deletar(id:number){
     this.bookService.DeletarBook(id).subscribe(response => {
       window.location.reload();
     })
