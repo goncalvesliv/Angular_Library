@@ -17,7 +17,7 @@ export class DetalhesComponent implements OnInit {
   constructor(private bookService: BookService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    const id = String(this.route.snapshot.paramMap.get('id'));
+    const id = Number(this.route.snapshot.paramMap.get('id'));
 
     this.bookService.GetBookId(id).subscribe(response => {
       this.book = response.dados;

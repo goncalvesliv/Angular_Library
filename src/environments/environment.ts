@@ -1,5 +1,5 @@
 export const environment = {
-    UrlApi: "https://localhost:7087/book"
+    UrlApi: "https://localhost:7120/api/Book"
 };
 
 //ambiente prod
